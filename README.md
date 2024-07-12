@@ -1,9 +1,8 @@
-# ExpressJS Starter Template
-
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/Vp8hse?referralCode=vimo)
 
-This is boilerplate/starter project for quickly building RESTful APIs using Node.js and [Express](https://expressjs.com/), written in JavaScript.
-It will help you get started with a simple to follow format with some examples for routes, logging and middleware.
+# ExpressJS Starter Template
+
+This is an express RESTful API project, using Node.js and [Express](https://expressjs.com/), written in JavaScript.
 
 ## Includes
 
@@ -12,6 +11,7 @@ It will help you get started with a simple to follow format with some examples f
 - [morgan](https://www.npmjs.com/package/morgan)- HTTP request logger middleware for Node.js
 - [dotenv](https://www.npmjs.com/package/dotenv)- Loads environment variables from `.env` file into `process.env`
 - [cors](https://www.npmjs.com/package/cors)- CORS provides a Connect/Express middleware that can be used to enable CORS with various options.
+- [openai](https://www.npmjs.com/package/openai)- This library provides convenient access to the OpenAI REST API from TypeScript or JavaScript.
 
 ### Development utilites
 
@@ -35,13 +35,9 @@ yarn dev
 
 The server runs a simple Express API server
 
-`/` returns `status: ok`
-
-`/hello` returns `message: Hello World!`
-
-Unknown endpoints are handled in a middleware file.
-
-The `hello` route is defined in the `helloRoute`
+- `/` returns `status: ok`
+- `/openai` talks to OpenAI server with API key taken from Environment variable, and initiates a chat completions API call, with function added in tools, to get a path to navigate to in a frontend application
+- Unknown endpoints are handled in a middleware file.
 
 ## Project Structure
 

@@ -3,7 +3,7 @@ import cors from "cors";
 import morgan from "morgan";
 
 import * as middleware from "./utils/middleware.js";
-import helloRoute from "./routes/helloRouter.js";
+import openairouter from "./routes/openairouter.js";
 
 const app = express();
 
@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
   res.status(200).send({ status: "ok" });
 });
 
-app.use("/hello", helloRoute);
+app.use("/openai", openairouter);
 
 // custom middleware
 app.use(middleware.unknownEndpoint);
