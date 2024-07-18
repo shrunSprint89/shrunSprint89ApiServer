@@ -1,10 +1,14 @@
 import OpenAI from "openai";
 import { config } from "dotenv";
+import * as logger from "../utils/logger.js";
 
 if (process.env.NODE_ENV !== "production") {
   config();
 }
 const OPENAIAPIKEY = process.env.OPENAIAPIKEY || "";
+
+logger.info(`API key fetched ${OPENAIAPIKEY.substring(0, 5)}`);
+
 const client = new OpenAI({
   apiKey: OPENAIAPIKEY,
 });
@@ -24,7 +28,6 @@ const openaiclient = {
       role: "user",
       content: `${input}`,
     });
-    console.log(OPENAIAPIKEY);
     const completion = await client.chat.completions.create({
       model: model,
       messages: messages,
@@ -40,14 +43,26 @@ const openaiclient = {
           function: {
             name: "navigateTo",
             description:
-              "Navigate to the right relative path in the portfolio web application by interpreting the given input parameter. Possible options are 'home' for Home page or About page, 'projects' for Projects page, 'career' for Career page or 'contact' for the Contact Us page. Default should be 'home'",
+              "Navigate to the right relative path in the portfolio web application by interpreting the given input parameter. Possible options are 'home' for Home page, 'home' for the About Me page also, 'projects' for Projects page, 'career' for Career page or 'contact' for the 'Contact Us' page. Default should be 'home'",
             parameters: {
               type: "object",
               properties: {
-                path: { type: "string", description: "Path to navigate to" },
+                path: {
+                  type: "string",
+                  description:
+                    "Path to navigate to can be (in caps) 'HOME', 'ABOUT', 'PROJECTS', 'CAREER', 'CONTACT'",
+                },
               },
               required: ["path"],
             },
+          },
+        },
+        {
+          type: "function",
+          function: {
+            name: "getAsciiQuote",
+            description:
+              "Get a random quotation from Robert C Martin, also called Uncle Bob",
           },
         },
       ],
