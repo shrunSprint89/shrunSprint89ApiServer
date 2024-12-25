@@ -1,6 +1,6 @@
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/Vp8hse?referralCode=vimo)
 
-# ExpressJS Starter Template
+# OpenAI Express Server
 
 This is an express RESTful API project, using Node.js and [Express](https://expressjs.com/), written in JavaScript.
 
